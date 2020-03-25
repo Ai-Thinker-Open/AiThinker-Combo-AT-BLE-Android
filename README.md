@@ -1,8 +1,8 @@
 # AndroidBle2TB02
 
+Android APP 蓝牙低功耗控制安信可TB02开发板 ，Android源码；
 
 蓝牙基础哭基于第三方库 H-Ble，Android Ble类库，基于回调，暴露搜索、连接、发送、接收、断开连接等接口，无需关心细节操作即可进行Ble通信。
-
 
 # API
 
@@ -60,7 +60,7 @@
 ### 指定UUID
 
 * 打开BleController.class
-* 修改以下成员变量的值为自己所要通信的BLE模块对应的UUID
+* 修改以下成员变量的值为自己所要通信的TB-02模块对应的UUID
     
         private static final String BLUETOOTH_S = "0000fff0-0000-1000-8000-00805f9b34fb";
     	private static final String BLUETOOTH_NOTIFY_C = "0000fff7-0000-1000-8000-00805f9b34fb";
@@ -72,18 +72,7 @@
 > 
 > C 代表characteristic的UUID；
 
-
-如果硬件没有提供UUID，可以下载Ble调试助手进行查看
-[http://download.csdn.net/detail/hansion3333/9753311](http://download.csdn.net/detail/hansion3333/9753311 "Ble串口助手")
-
 ---
 
-> 本库满足Android 4.3以上手机和BLE模块之间的连接与互发数据。
+> 本库满足Android 4.3以上手机和安信可TB-02模块之间的连接与互发数据。
 > 
-> 本库并未将常用Ble手表、心率计等设备的UUID加入其中自动匹配。所以有此需求可以使用其他支持的库。
-> 
-> 个人博客：[http://www.hansion.win](http://www.hansion.win)
-> 
-> CSDN: [http://blog.csdn.net/hansion3333](http://blog.csdn.net/hansion3333)
-
-* 注意：蓝牙的使用，与设备有莫大的关联，所以适配方面需要多加处理 此库在ZUK Z2 6.0/7.0,魅蓝note3 5.1，红米note3 5.0，一加7.0，华为7.0等手机上测试无问题，其他机型请自测
