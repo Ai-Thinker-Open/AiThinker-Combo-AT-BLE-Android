@@ -6,11 +6,11 @@
 
     <EditText
         android:id="@+id/mSendEdit"
-        android:hint="请输入要发送的数据"
+        android:hint="input your send text"
         android:layout_width="match_parent"
         android:layout_height="80dp" />
     <Button
-        android:text="发送"
+        android:text="send"
         android:layout_below="@+id/mSendEdit"
         android:id="@+id/mSendButton"
         android:layout_width="match_parent"

@@ -1,8 +1,10 @@
 package com.hansion.hble.sample;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,8 @@ import com.hansion.h_ble.BleController;
 import com.hansion.h_ble.callback.OnReceiverCallback;
 import com.hansion.h_ble.callback.OnWriteCallback;
 import com.hansion.hble.R;
+
+import java.util.Arrays;
 
 public class SendAndReciveActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,17 +41,23 @@ public class SendAndReciveActivity extends AppCompatActivity implements View.OnC
         mBleController.registReciveListener(REQUESTKEY_SENDANDRECIVEACTIVITY, new OnReceiverCallback() {
             @Override
             public void onRecive(byte[] value) {
-                mReciveString.append(mBleController.bytesToHexString(value) + "\r\n");
+                // 这里为了演示方便，把 byte数组转字符串显示
+                String string = new String(value);
+                mReciveString.append(string + "\r\n");
                 mReciveText.setText(mReciveString.toString());
             }
         });
+
     }
+
+
 
     private void initView() {
         mSendButton = (Button) findViewById(R.id.mSendButton);
         mSendEdit = (EditText) findViewById(R.id.mSendEdit);
         mReciveText = (TextView) findViewById(R.id.mReciveText);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Ble For AiThinker");
         mSendButton.setOnClickListener(this);
     }
 
@@ -57,21 +67,20 @@ public class SendAndReciveActivity extends AppCompatActivity implements View.OnC
             case R.id.mSendButton:
                 String sendText = mSendEdit.getText().toString().trim();
                 if (TextUtils.isEmpty(sendText)) {
-                    Toast.makeText(this, "请输入要发送的内容！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "send text cannot be null" , Toast.LENGTH_SHORT).show();
                     return;
                 } else {
+                    //这里把字符串格式转byte数组
                     byte[] bytes = sendText.getBytes();
-
-                    // TODO 发送数据 可以输入 A 测试，如果串口调试工具显示为0x41 代表接收正确
                     mBleController.writeBuffer(bytes, new OnWriteCallback() {
                         @Override
                         public void onSuccess() {
-                            Toast.makeText(SendAndReciveActivity.this, "发送成功！", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SendAndReciveActivity.this, "send OK！", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onFailed(int state) {
-                            Toast.makeText(SendAndReciveActivity.this, "发送失败！", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SendAndReciveActivity.this, "send Fail！", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -91,5 +100,15 @@ public class SendAndReciveActivity extends AppCompatActivity implements View.OnC
         mBleController.unregistReciveListener(REQUESTKEY_SENDANDRECIVEACTIVITY);
         // TODO 断开连接
         mBleController.closeBleConn();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

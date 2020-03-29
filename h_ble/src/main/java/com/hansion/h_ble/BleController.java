@@ -13,6 +13,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.hansion.h_ble.callback.BleDeviceScanCallback;
 import com.hansion.h_ble.callback.ConnectCallback;
@@ -29,14 +30,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * Description：
- * Author: Hansion  www.hansion.win
- * Time: 2017/2/13 9:43
- */
+
 public class BleController {
 
-    private static String LOGTAG = "H_Ble_Lib --> ";
+    private static String LOGTAG = "XuHongLog-->";
 
     //BleCOntroller实例
     private static BleController sBleManager;
@@ -69,15 +66,13 @@ public class BleController {
     //此属性一般不用修改
     private static final String BLUETOOTH_NOTIFY_D = "00002902-0000-1000-8000-00805f9b34fb";
 
-    //TODO 这里是硬件提供的各种UUID 一定要根据自己的情况进行修改
-    private static final String BLUETOOTH_S = "0000fff0-0000-1000-8000-00805f9b34fb";
-    private static final String BLUETOOTH_NOTIFY_C = "0000fff7-0000-1000-8000-00805f9b34fb";
-    private static final String BLUETOOTH_WRITE_C = "0000fff6-0000-1000-8000-00805f9b34fb";
+    //TODO 这里是TB02开发板提供的各种UUID，请勿修改
+    private static final String BLUETOOTH_S = "00010203-0405-0607-0809-0a0b0c0d1910";
+    private static final String BLUETOOTH_NOTIFY_C = "00010203-0405-0607-0809-0a0b0c0d2b10";
+    private static final String BLUETOOTH_WRITE_C = "00010203-0405-0607-0809-0a0b0c0d2b10";
+
 
     //-----------------------------  对外公开的方法 ----------------------------------------------
-
-
-
     /**
      * 获取BleController实例对象
      * @return
@@ -339,6 +334,7 @@ public class BleController {
                     String serviceUuid = bluetoothGattService.getUuid().toString();
                     List<BluetoothGattCharacteristic> characteristics = bluetoothGattService.getCharacteristics();
                     int characteristicSize = characteristics.size();
+
                     for (int j = 0; j < characteristicSize; j++) {
                         charMap.put(characteristics.get(j).getUuid().toString(), characteristics.get(j));
                         if (characteristics.get(j).getUuid().toString().equals(BLUETOOTH_NOTIFY_C)) {
@@ -352,8 +348,6 @@ public class BleController {
                     }
                     servicesMap.put(serviceUuid, charMap);
                 }
-                // TODO　打印搜索到的服务
-//                printServices(mBluetoothGatt);
             }
         }
 
@@ -430,30 +424,6 @@ public class BleController {
         return mBluetoothGatt.writeDescriptor(clientConfig);
     }
 
-
-    //打印所有搜索到的服务 此方法用于硬件方未提供UUID时查询所有UUID
-    private void printServices(BluetoothGatt gatt) {
-        if (gatt != null) {
-            Iterator i$ = gatt.getServices().iterator();
-
-            while (i$.hasNext()) {
-                BluetoothGattService service = (BluetoothGattService) i$.next();
-                Log.i(LOGTAG, "service: " + service.getUuid());
-                Iterator i$1 = service.getCharacteristics().iterator();
-
-                while (i$1.hasNext()) {
-                    BluetoothGattCharacteristic characteristic = (BluetoothGattCharacteristic) i$1.next();
-                    Log.d("LOGTAG", "  characteristic: " + characteristic.getUuid() + " value: " + Arrays.toString(characteristic.getValue()));
-                    Iterator i$2 = characteristic.getDescriptors().iterator();
-
-                    while (i$2.hasNext()) {
-                        BluetoothGattDescriptor descriptor = (BluetoothGattDescriptor) i$2.next();
-                        Log.v("LOGTAG", "        descriptor: " + descriptor.getUuid() + " value: " + Arrays.toString(descriptor.getValue()));
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * 根据服务UUID和特征UUID,获取一个特征{@link BluetoothGattCharacteristic}
