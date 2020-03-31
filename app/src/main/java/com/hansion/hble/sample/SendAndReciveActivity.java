@@ -57,7 +57,7 @@ public class SendAndReciveActivity extends AppCompatActivity implements View.OnC
         mSendEdit = (EditText) findViewById(R.id.mSendEdit);
         mReciveText = (TextView) findViewById(R.id.mReciveText);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Ble For AiThinker");
+        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
         mSendButton.setOnClickListener(this);
     }
 

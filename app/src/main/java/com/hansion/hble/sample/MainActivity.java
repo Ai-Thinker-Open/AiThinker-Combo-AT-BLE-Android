@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = this;
-        getSupportActionBar().setTitle("Ble For AiThinker");
+        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
 
         mDeviceList = (ListView) findViewById(R.id.mDeviceList);
 

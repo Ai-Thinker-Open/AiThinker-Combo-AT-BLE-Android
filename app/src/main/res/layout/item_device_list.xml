@@ -3,46 +3,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="5dp"
-    android:orientation="vertical">
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_marginStart="6dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center"
+        android:background="@mipmap/logo" />
 
     <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:textSize="30sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="名称:" />
+        <LinearLayout
 
-        <TextView
-            android:id="@+id/mDeviceName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp" />
+            android:gravity="center_vertical"
+            android:paddingStart="5dp">
+
+            <TextView
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: "
+                android:textSize="15sp" />
+
+            <TextView
+                android:textColor="@color/colorAccent"
+                android:id="@+id/mDeviceName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address: "
+                android:textSize="15sp" />
+
+            <TextView
+                android:textColor="@color/colorAccent"
+                android:id="@+id/mDeviceMacAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:textSize="16sp" />
+        </LinearLayout>
+
     </LinearLayout>
-
-    <LinearLayout
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:textSize="30sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="地址:" />
-
-        <TextView
-            android:id="@+id/mDeviceMacAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-
-
 
 </LinearLayout>
