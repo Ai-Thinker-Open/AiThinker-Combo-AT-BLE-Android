@@ -2,7 +2,14 @@
 
 Android APP 蓝牙低功耗控制安信可TB02开发板 ，Android源码；
 
-蓝牙基础哭基于第三方库 H-Ble，Android Ble类库，基于回调，暴露搜索、连接、发送、接收、断开连接等接口，无需关心细节操作即可进行Ble通信。
+蓝牙基础库基于第三方库 H-Ble，Android Ble类库，基于回调，暴露搜索、连接、发送、接收、断开连接等接口，无需关心细节操作即可进行Ble通信。
+
+设备端 TB01/02 模块开发板请自行确保是否烧录 AT 透传固件，否则无法通讯！
+如需购买 TB01/02 模块开发板请访问安信可官网淘宝店：https://anxinke.taobao.com
+
+**注意：此源码非 Ble Mesh控制，而是普通ble协议控制！**
+
+
 
 <p align="center">
   <img src="app/src/main/res/mipmap-xxxhdpi/screen.png"  alt="Banner" />
