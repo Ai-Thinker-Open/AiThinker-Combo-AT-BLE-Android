@@ -4,6 +4,11 @@ Android APP 蓝牙低功耗控制安信可TB02开发板 ，Android源码；
 
 蓝牙基础哭基于第三方库 H-Ble，Android Ble类库，基于回调，暴露搜索、连接、发送、接收、断开连接等接口，无需关心细节操作即可进行Ble通信。
 
+<p align="center">
+  <img src="app/src/main/res/mipmap-xxxhdpi/screen.png"  alt="Banner" />
+</p>
+
+
 # API
 
 > 
