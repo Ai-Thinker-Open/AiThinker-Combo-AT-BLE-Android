@@ -9,6 +9,7 @@ Android APP 蓝牙低功耗控制安信可TB02开发板 ，Android源码；
 
 **注意：此源码非 Ble Mesh控制，而是普通ble协议控制！**
 
+完整的教程：[如何在Android开发低功耗蓝牙ble控制 TB-02 模块，代码工程全部开源！](https://blog.csdn.net/Boantong_/article/details/105529786)
 
 
 <p align="center">
